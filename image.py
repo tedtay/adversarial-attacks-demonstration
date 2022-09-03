@@ -9,10 +9,160 @@ from IPython.display import clear_output
 
 MODEL = torch.hub.load('pytorch/vision:v0.10.0', 'resnet18', pretrained=True)
 
+HUE_DICT = {'red':(255,0,0),
+ 'yellow': (255,255,0),
+ 'pink': (255,0,255),
+ 'green': (0,255,0),
+ 'orange': (255,128,0),
+ 'purple': (127,0,255),
+ 'blue': (0,0,255),
+ 'brown': (102,51,0),
+ 'grey': (128,128,128),
+ 'white': (255,255,255),
+ 'black': (0,0,0)}
+
 class Image:
-	
 	def __init__(self, matrix: PIL.Image.Image):
 		self.matrix = matrix
+		self.size = matrix.size
+
+	def genImage(self, name: str, hault_threshold, learning_rate):
+		k = 0
+		place_count = 0
+		item = name
+
+		prev_image = self.matrix
+		prev_image_value = dict(pred(prev_image))[item]
+
+		while (prev_image_value < hault_threshold):
+			clear_output(wait=True)
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['red'])
+			add_red_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_red_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_red_image_value)
+				prev_image_value = add_red_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['yellow'])
+			add_yellow_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_yellow_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:',
+					  add_yellow_image_value)
+				prev_image_value = add_yellow_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['pink'])
+			add_pink_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_pink_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_pink_image_value)
+				prev_image_value = add_pink_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['green'])
+			add_green_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_green_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_green_image_value)
+				prev_image_value = add_green_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['orange'])
+			add_orange_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_orange_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:',
+					  add_orange_image_value)
+				prev_image_value = add_orange_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['purple'])
+			add_purple_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_purple_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:',
+					  add_purple_image_value)
+				prev_image_value = add_purple_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['blue'])
+			add_blue_image_value = dict(pred(self.matrix ))[item]
+			place_count += 1
+			if (add_blue_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix .copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_blue_image_value)
+				prev_image_value = add_blue_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['brown'])
+			add_brown_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_brown_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_brown_image_value)
+				prev_image_value = add_brown_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['grey'])
+			add_grey_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_grey_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_grey_image_value)
+				prev_image_value = add_grey_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle( HUE_DICT['white'])
+			add_white_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_white_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_white_image_value)
+				prev_image_value = add_white_image_value
+				k = k + 1
+				continue
+
+			self.matrix = prev_image.copy()
+			self.placeRandCircle(HUE_DICT['black'])
+			add_black_image_value = dict(pred(self.matrix))[item]
+			place_count += 1
+			if (add_black_image_value > prev_image_value + learning_rate):
+				prev_image = self.matrix.copy()
+				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_black_image_value)
+				prev_image_value = add_black_image_value
+				k = k + 1
+				continue
+
+		print(f'Finished - After {k} changes')
+		return ([pred(self.matrix), pred(prev_image), prev_image])
 
 	def placeRandCircle(self, color: tuple, min_width: int = 20, max_width: int = 100):
 
