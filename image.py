@@ -14,15 +14,31 @@ class Image:
 	def __init__(self, matrix: PIL.Image.Image):
 		self.matrix = matrix
 
+	def placeRandCircle(self, color: tuple, min_width: int = 20, max_width: int = 100):
+
+		size_rand = random.randint(min_width, max_width)
+
+		x_rand = random.randint(0, 255 - size_rand)
+		y_rand = random.randint(0, 255 - size_rand)
+
+		r_rand = random.randint(0, 255)
+		g_rand = random.randint(0, 255)
+		b_rand = random.randint(0, 255)
+
+		from PIL import Image, ImageDraw
+		draw = ImageDraw.Draw(self.matrix)
+
+		draw.ellipse((x_rand, y_rand, x_rand + size_rand, y_rand + size_rand), fill=color)
+
 	def trick(self, name: str, hault_threshold: int = 95):
 
 		run_image = self.matrix.resize((256, 256))
 		n_sub1_pred = pred(run_image)
 		n_sub1_value = [item for item in n_sub1_pred if item[0] == name][0][1]
 		k=0
-		while (n_sub1_pred[0][0] != name) or (n_sub1_pred[0][1] < hault_threshold):
+		while ((n_sub1_pred[0][0] != name) or (n_sub1_pred[0][1]< hault_threshold)) and (n_sub1_value < hault_threshold):
 			clear_output(wait=True)
-
+			#f
 			x_rand = random.randint(0, 255)
 			y_rand = random.randint(0, 255)
 
@@ -40,7 +56,6 @@ class Image:
 			if current_value > n_sub1_value:
 				print(f"change no. {k}")
 				print(f"old n_sub1_value: {n_sub1_value}")
-				#print(f"BETTER ({x_rand},{y_rand}) old: {old_pixel_val}  new: {new_pixel_val}")
 				n_sub1_pred = current_pred
 				n_sub1_value = current_value
 
@@ -48,10 +63,11 @@ class Image:
 				k=k+1
 			else:
 				run_image.load()[x_rand,y_rand] = old_pixel_val
-				#print(f"WORSE ({x_rand},{y_rand}) old: {old_pixel_val}  new: {new_pixel_val}")
 
 		print(f'Finished - After {k} changes')
 		return ([pred(self.matrix.resize((256, 256))),pred(run_image),run_image])
+
+
 	
 
 def preprocessImage(img_param: PIL.Image.Image) -> torch.Tensor:
