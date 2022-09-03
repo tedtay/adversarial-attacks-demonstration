@@ -26,12 +26,12 @@ class Image:
 		self.matrix = matrix
 		self.size = matrix.size
 
-	def genImage(self, name: str, hault_threshold, learning_rate):
+	def genImage(self, name: str, hault_threshold: int =95, learning_rate: float = 0.1):
 		k = 0
 		place_count = 0
 		item = name
 
-		prev_image = self.matrix
+		prev_image = self.matrix.copy()
 		prev_image_value = dict(pred(prev_image))[item]
 
 		while (prev_image_value < hault_threshold):
@@ -156,10 +156,10 @@ class Image:
 			place_count += 1
 			if (add_black_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_black_image_value)
 				prev_image_value = add_black_image_value
 				k = k + 1
 				continue
+			print(f'Attempt No.{place_count}\n Placement No.{k}\n prev:', prev_image_value, 'current:', add_black_image_value)
 
 		print(f'Finished - After {k} changes')
 		return ([pred(self.matrix), pred(prev_image), prev_image])
@@ -179,8 +179,22 @@ class Image:
 		draw = ImageDraw.Draw(self.matrix)
 
 		draw.ellipse((x_rand, y_rand, x_rand + size_rand, y_rand + size_rand), fill=color)
+		
+	def placeRandPixel(self):
+		
+		x_rand = random.randint(0, 255)
+		y_rand = random.randint(0, 255)
 
-	def trick(self, name: str, hault_threshold: int = 95):
+		r_rand = random.randint(0, 255)
+		g_rand = random.randint(0, 255)
+		b_rand = random.randint(0, 255)
+
+		old_pixel_val = self.matrix.load()[x_rand,y_rand]
+		new_pixel_val = (r_rand,g_rand,b_rand)
+
+		self.matrix.load()[x_rand,y_rand] = (r_rand,g_rand,b_rand)
+
+	def trick(self, name: str, learning_rate: float = 0, hault_threshold: int = 95):
 
 		run_image = self.matrix.resize((256, 256))
 		n_sub1_pred = pred(run_image)
@@ -188,7 +202,7 @@ class Image:
 		k=0
 		while ((n_sub1_pred[0][0] != name) or (n_sub1_pred[0][1]< hault_threshold)) and (n_sub1_value < hault_threshold):
 			clear_output(wait=True)
-			#f
+			
 			x_rand = random.randint(0, 255)
 			y_rand = random.randint(0, 255)
 
@@ -203,7 +217,7 @@ class Image:
 			current_pred = pred(run_image)
 			current_value = [item for item in current_pred if item[0] == name][0][1]
 
-			if current_value > n_sub1_value:
+			if current_value > n_sub1_value + learning_rate:
 				print(f"change no. {k}")
 				print(f"old n_sub1_value: {n_sub1_value}")
 				n_sub1_pred = current_pred
