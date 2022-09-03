@@ -9,7 +9,8 @@ from IPython.display import clear_output
 
 MODEL = torch.hub.load('pytorch/vision:v0.10.0', 'resnet18', pretrained=True)
 
-HUE_DICT = {'red':(255,0,0),
+HUE_DICT = {
+'red':(255,0,0),
  'yellow': (255,255,0),
  'pink': (255,0,255),
  'green': (0,255,0),
@@ -43,7 +44,7 @@ class Image:
 			place_count += 1
 			if (add_red_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_red_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_red_image_value}')
 				prev_image_value = add_red_image_value
 				k = k + 1
 				continue
@@ -54,8 +55,7 @@ class Image:
 			place_count += 1
 			if (add_yellow_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:',
-					  add_yellow_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_yellow_image_value}')
 				prev_image_value = add_yellow_image_value
 				k = k + 1
 				continue
@@ -66,7 +66,7 @@ class Image:
 			place_count += 1
 			if (add_pink_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_pink_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_pink_image_value}')
 				prev_image_value = add_pink_image_value
 				k = k + 1
 				continue
@@ -77,7 +77,7 @@ class Image:
 			place_count += 1
 			if (add_green_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_green_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_green_image_value}')
 				prev_image_value = add_green_image_value
 				k = k + 1
 				continue
@@ -88,8 +88,7 @@ class Image:
 			place_count += 1
 			if (add_orange_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:',
-					  add_orange_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_orange_image_value}')
 				prev_image_value = add_orange_image_value
 				k = k + 1
 				continue
@@ -100,8 +99,7 @@ class Image:
 			place_count += 1
 			if (add_purple_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:',
-					  add_purple_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_purple_image_value}')
 				prev_image_value = add_purple_image_value
 				k = k + 1
 				continue
@@ -112,7 +110,7 @@ class Image:
 			place_count += 1
 			if (add_blue_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix .copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_blue_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_blue_image_value}')
 				prev_image_value = add_blue_image_value
 				k = k + 1
 				continue
@@ -123,7 +121,7 @@ class Image:
 			place_count += 1
 			if (add_brown_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_brown_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_brown_image_value}')
 				prev_image_value = add_brown_image_value
 				k = k + 1
 				continue
@@ -134,7 +132,7 @@ class Image:
 			place_count += 1
 			if (add_grey_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_grey_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_grey_image_value}')
 				prev_image_value = add_grey_image_value
 				k = k + 1
 				continue
@@ -145,7 +143,7 @@ class Image:
 			place_count += 1
 			if (add_white_image_value > prev_image_value + learning_rate):
 				prev_image = self.matrix.copy()
-				print(f'Attempt No.{place_count} Placement No.{k} prev:', prev_image_value, 'current:', add_white_image_value)
+				print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_white_image_value}')
 				prev_image_value = add_white_image_value
 				k = k + 1
 				continue
@@ -159,7 +157,7 @@ class Image:
 				prev_image_value = add_black_image_value
 				k = k + 1
 				continue
-			print(f'Attempt No.{place_count}\n Placement No.{k}\n prev:', prev_image_value, 'current:', add_black_image_value)
+			print(f'Attempt No.{place_count} \nPlacement No.{k} \nprev: {prev_image_value} \ncurrent: {add_black_image_value}')
 
 		print(f'Finished - After {k} changes')
 		return ([pred(self.matrix), pred(prev_image), prev_image])
