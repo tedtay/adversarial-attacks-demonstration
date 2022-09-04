@@ -1,5 +1,5 @@
 # adversarial-attacks-demonstration
-# **Overview**
+
 ###### Quick Start -> open the demo.ipynb
 <font size="3">
 This Notebook aims to demonstrate one of the inherent weaknesses of using convolutional neural networks (CNN's) in safety critical systems such as security systems, autonomous driving applications and more. The notebook offers a walk through of the steps and code necessary for you to understand the concepts involved and to try out the idea for yourself. Please feel free to re-use any code you see in this document.
